@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading;
 using System.Windows;
 using System.Windows.Media;
+using Custom_crasshair;
 
 namespace Custom_crosshair_Overlay;
 
@@ -29,7 +30,9 @@ public partial class Curstom_crosshair_MainGUI : Window
     private List<Process> allRunningProcesses;
     private List<string> nonEmptyWindowNames = new();
     private readonly List<Color> crosshairColors = new();
+    private readonly List<CrosshairStyle?> crosshairStyles = new();
     private readonly List<string> crosshairColorNames = new();
+    private readonly List<string> crosshairStylesNames = new();
 
     #endregion
 
@@ -41,6 +44,7 @@ public partial class Curstom_crosshair_MainGUI : Window
         LoadColors();
         // load all the processes
         LoadProcesses();
+        LoadStyles();
         // attaching to event the handler
         crosshairOverlayWindow.AttachedToProcessComplete += AttachingToProcessComplete;
         // display the transparent crosshair window
@@ -86,6 +90,12 @@ public partial class Curstom_crosshair_MainGUI : Window
     {
         if (cmb_color.SelectedIndex >= 0)
             crosshairOverlayWindow.SetCrosshairColor = crosshairColors[cmb_color.SelectedIndex];
+    }
+    
+    private void ChangeCrosshairStyle_Click(object sender, RoutedEventArgs e)
+    {
+         // if (cmb_style.SelectedIndex >= 0)
+         //   crosshairOverlayWindow.SetCrosshairColor = crosshairStyles[cmb_style.SelectedIndex];
     }
 
     private void CrosshairTransparency_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
@@ -203,5 +213,46 @@ public partial class Curstom_crosshair_MainGUI : Window
         cmb_color.SelectedIndex = 0;
     }
 
+
+    private void LoadStyles()
+    {
+        
+        CrosshairStyle? stylePlus = null;
+        if (stylePlus != null)
+        {
+            stylePlus.Name = "Plus";
+            stylePlus.FormId = 0;
+        }
+         
+        CrosshairStyle? styleT = null;
+        if (styleT != null)
+        {
+            styleT.Name = "Sqare";
+            styleT.FormId = 1;
+        }
+
+        CrosshairStyle? styleSqare = null;
+        if (styleSqare != null)
+        {
+            styleSqare.Name = "T";
+            styleSqare.FormId = 2;
+        }
+       
+        
+        crosshairStylesNames.Add("+-Style");
+        crosshairStyles.Add(stylePlus);
+
+        crosshairStylesNames.Add("T-Style");
+        crosshairStyles.Add(styleT);
+        
+        crosshairStylesNames.Add("□-Style");
+        crosshairStyles.Add(styleSqare);
+
+        cmb_style.ItemsSource = crosshairStylesNames;
+        cmb_style.SelectedIndex = 0;
+        
+    }
     #endregion
+
+  
 }

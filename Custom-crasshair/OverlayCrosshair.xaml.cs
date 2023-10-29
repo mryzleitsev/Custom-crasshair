@@ -5,6 +5,7 @@ using System.Threading;
 using System.Windows;
 using System.Windows.Interop;
 using System.Windows.Media;
+using Custom_crasshair;
 
 namespace Custom_crosshair_Overlay;
 
@@ -68,9 +69,40 @@ public partial class OverlayCrosshair : Window
 
         leftbar.Fill = solidColor;
         rightbar.Fill = solidColor;
-        //topbar.Fill = solidColor;
+        topbar.Fill = solidColor;
         bottombar.Fill = solidColor;
     }
+
+    /// <summary>
+    ///     Set the crosshair's color
+    /// </summary>
+    /// <param name="style">The <see cref="Style" /> object to use as the fill</param>
+    // public void CrosshairStyle_change(CrosshairStyle style)
+    // {
+    //     switch (style.FormId)
+    //     {
+    //         //Plus
+    //         case 0:
+    //             leftbar.Visibility = Visibility.Visible;
+    //             rightbar.Visibility = Visibility.Visible;
+    //             topbar.Visibility = Visibility.Visible;
+    //             bottombar.Visibility = Visibility.Visible;
+    //             break;
+    //         //T
+    //         case 1:
+    //             leftbar.Visibility = Visibility.Visible;
+    //             rightbar.Visibility = Visibility.Visible;
+    //             topbar.Visibility = Visibility.Hidden;
+    //             bottombar.Visibility = Visibility.Visible;
+    //             break;
+    //         default:
+    //             leftbar.Visibility = Visibility.Visible;
+    //             rightbar.Visibility = Visibility.Visible;
+    //             topbar.Visibility = Visibility.Visible;
+    //             bottombar.Visibility = Visibility.Visible;
+    //             break;
+    //     }
+    // }
 
     /// <summary>
     ///     Method responsible for setting the overlay's position on the desktop
